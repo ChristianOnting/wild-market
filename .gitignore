@@ -1,0 +1,16 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+**/.classpath
+**/.project
+**/.settings/
+
+**/node_modules/
+**/dist/
+**/.DS_Store
+
+**/.idea/
+**/.vscode/
+*.log
