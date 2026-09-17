@@ -1,29 +1,16 @@
 package edu.cit.onting.shop.dto;
 
+import java.util.List;
+
 public class OrderRequest {
-    private String productId;
-    private int quantity;
+    private List<OrderItemRequest> items;
 
     public OrderRequest() {}
 
-    public OrderRequest(String productId, int quantity) {
-        this.productId = productId;
-        this.quantity = quantity;
+    public OrderRequest(List<OrderItemRequest> items) {
+        this.items = items;
     }
 
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public List<OrderItemRequest> getItems() { return items; }
+    public void setItems(List<OrderItemRequest> items) { this.items = items; }
 }

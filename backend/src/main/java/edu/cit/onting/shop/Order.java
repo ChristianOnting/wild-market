@@ -1,7 +1,10 @@
 package edu.cit.onting.shop;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -12,14 +15,8 @@ public class Order {
     @Column(name = "order_id")
     private Long orderId;
 
-    @Column(name = "product_id", nullable = false)
-    private String productId;
-
-    @Column(nullable = false)
-    private Integer quantity;
-
     @Column(nullable = false, length = 20)
-    private String status;
+    private String status; // CONFIRMED, REJECTED, CANCELLED
 
     @Column(length = 255)
     private String reason;
@@ -27,33 +24,24 @@ public class Order {
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<OrderItem> items = new ArrayList<>();
+
     public Order() {}
 
-    public Order(String productId, Integer quantity, String status, String reason) {
-        this.productId = productId;
-        this.quantity = quantity;
+    public Order(String status, String reason) {
         this.status = status;
         this.reason = reason;
     }
 
+    public void addItem(OrderItem item) {
+        items.add(item);
+        item.setOrder(this);
+    }
+
     public Long getOrderId() {
         return orderId;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public String getStatus() {
@@ -74,5 +62,13 @@ public class Order {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
     }
 }
