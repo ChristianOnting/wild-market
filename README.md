@@ -52,10 +52,10 @@ To accomplish this:
 ![Rejected](screenshots/lab2_rejected.png)
 
 ### **Order Cancellation & Restock:** 
-![Cancel](screenshots/lab2_cancelled.jpg)
+![Cancel](screenshots/lab2_cancelled.png)
 
 ### **Notification Feed (Confirmed, Rejected, Low Stock):** 
-![Notifications](screenshots/lab2_low_stock.jpg)
+![Notifications](screenshots/lab2_low_stock.png)
 
 ---
 
